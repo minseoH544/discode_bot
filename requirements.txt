@@ -1,5 +1,5 @@
-discord.py>=2.3.0
-python-dotenv
-pytz
-flask
+discord.py==2.3.2
+flask==2.3.3
+python-dotenv==1.0.0
+pytz==2023.3
 requests
