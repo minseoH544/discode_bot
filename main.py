@@ -226,41 +226,6 @@ async def check_class_reminders():
     except Exception as e:
         print(f"알림 확인 중 오류 발생: {e}")
 
-
-@bot.command(name='종료') #관리자 전용 기능
-@commands.has_permissions(administrator=True)
-async def shutdown(ctx):
-    embed = discord.Embed(title="🛑 봇 종료",
-                          description="봇을 종료합니다. 안녕히 계세요!",
-                          color=0xff0000)
-    await ctx.send(embed=embed)
-    print(f"{ctx.author}님이 봇을 종료했습니다.")
-    await bot.close()
-
-
-@shutdown.error #현재는 서버인원 전체가 관리자 권한을 가지고 있으나 추후 인원 변동을 위해 작성
-async def shutdown_error(ctx, error):
-    if isinstance(error, commands.MissingPermissions):
-        await ctx.send("❌ 관리자 권한이 필요합니다.")
-
-
-@bot.command(name='재시작') #종료와 동일
-@commands.has_permissions(administrator=True)
-async def restart(ctx):
-    embed = discord.Embed(title="🔄 봇 재시작",
-                          description="봇을 재시작합니다. 잠시만 기다려주세요...",
-                          color=0xffaa00)
-    await ctx.send(embed=embed)
-    print(f"{ctx.author}님이 봇을 재시작했습니다.")
-    await bot.close()
-
-
-@restart.error
-async def restart_error(ctx, error):
-    if isinstance(error, commands.MissingPermissions):
-        await ctx.send("❌ 관리자 권한이 필요합니다.")
-
-
 @bot.command(name='도움말')
 async def help_command(ctx):
     embed = discord.Embed(title="📖 수업 알림 봇 사용법",
